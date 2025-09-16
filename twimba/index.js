@@ -7,10 +7,15 @@ tweetBtn.addEventListener('click', function(){
 })
 
 function getFeedHtml(){
-    
     let feedHtml = ``
+/*
+Challenge:
+1. Add data attributes to each of the  <i> tags. You can call
+   them 'reply', 'like', and 'retweet’.
+2. Each data attribute should hold the tweet's uuid.
+*/
     
-    tweetsData.forEach((tweet) => {
+    tweetsData.forEach(function(tweet){
         feedHtml += `
 <div class="tweet">
     <div class="tweet-inner">
@@ -20,33 +25,30 @@ function getFeedHtml(){
             <p class="tweet-text">${tweet.tweetText}</p>
             <div class="tweet-details">
                 <span class="tweet-detail">
-                <i class="fa-regular fa-comment-dots"></i>
+                    <i class="fa-regular fa-comment-dots"
+                    data-reply="${tweet.uuid}"
+                    ></i>
                     ${tweet.replies.length}
                 </span>
                 <span class="tweet-detail">
-                <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"
+                    data-like="${tweet.uuid}"
+                    ></i>
                     ${tweet.likes}
-                </span>
+                </span> 
                 <span class="tweet-detail">
-                <i class="fa-solid fa-retweet"></i>
+                    <i class="fa-solid fa-retweet"
+                    data-retweet="${tweet.uuid}"
+                    ></i>
                     ${tweet.retweets}
                 </span>
             </div>   
         </div>            
     </div>
-</div>`
-    })
-return feedHtml
-/*
-Challenge:
-1. Use a "for of" to iterate over the data and
-   create HTML string for each tweet using the 
-   boilerplate below. Replace UPPERCASE text
-   with data from the tweets. 
-2. Store this HTML in a let called "feedHtml".
-3. Log out feedHtml.
-4. Call getFeedHtml to check it's working.
-*/  
+</div>
+`
+   })
+   return feedHtml 
 }
 
 function render(){
