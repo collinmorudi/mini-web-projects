@@ -6,14 +6,22 @@ tweetBtn.addEventListener('click', function(){
     console.log(tweetInput.value)
 })
 
+document.addEventListener('click', function(e){
+    if(e.target.dataset.like){
+       handleLikeClick(e.target.dataset.like) 
+    }
+})
+
+function handleLikeClick(tweetId){ 
+    const targetTweetObj = tweetsData.filter(function(tweet){
+        return tweet.uuid === tweetId
+    })[0]
+    targetTweetObj.likes++
+    render()
+}
+
 function getFeedHtml(){
     let feedHtml = ``
-/*
-Challenge:
-1. Add data attributes to each of the  <i> tags. You can call
-   them 'reply', 'like', and 'retweet’.
-2. Each data attribute should hold the tweet's uuid.
-*/
     
     tweetsData.forEach(function(tweet){
         feedHtml += `
@@ -35,7 +43,7 @@ Challenge:
                     data-like="${tweet.uuid}"
                     ></i>
                     ${tweet.likes}
-                </span> 
+                </span>
                 <span class="tweet-detail">
                     <i class="fa-solid fa-retweet"
                     data-retweet="${tweet.uuid}"
