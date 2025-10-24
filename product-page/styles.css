@@ -41,6 +41,11 @@ p {
     margin-bottom: 0.5em;
 }
 
+.subheading,
+.beta-text {
+    text-transform: uppercase;
+}
+
 /* =================
     Flex containers
    ================= */
