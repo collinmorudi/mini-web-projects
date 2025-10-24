@@ -92,3 +92,13 @@ p {
 /* =================
     Media queries 
    ================= */
+@media (min-width: 576px) {
+    body{
+        display: flex;
+    }
+
+    .intro,
+    .main-content {
+        flex: 1; /* width: 50%; */
+    }
+}
