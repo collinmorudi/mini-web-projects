@@ -7,13 +7,6 @@ body {
 /* =================
     Typography 
    ================= */
-   
-/* 
-  Challenge: Set the initial styles for text
-    - Set the paragraph to a relative font-size value equal to 18px
-    - Set the p line-height to 1.35 times its font-size value
-    - Give .subheading a bottom margin in em equal to half its font-size value
-*/
 
 h1 {
     font-size: 2.5rem;
@@ -37,12 +30,12 @@ p {
 
 .subheading {
     color: #575757;
-    font-weight: 900;
+    font-weight: 900;  
     margin-bottom: 0.5em;
 }
 
-.subheading,
-.beta-text {
+.beta-text,
+.subheading {
     text-transform: uppercase;
 }
 
@@ -92,13 +85,30 @@ p {
 /* =================
     Media queries 
    ================= */
+   
+/* 
+  Challenge:
+    - Expand the height of .intro so that it takes up
+      the full height of the browser window
+    - Vertically center the content inside .main-content
+*/
+
 @media (min-width: 576px) {
-    body{
+    body {
         display: flex;
     }
-
+    
     .intro,
     .main-content {
-        flex: 1; /* width: 50%; */
+        width: 50%;
+    }
+    
+    .intro {
+        min-height: 100vh;
+    }
+    
+    .main-content {
+        justify-content: center;
+        padding-top: 0;
     }
 }
