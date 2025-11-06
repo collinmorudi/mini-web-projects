@@ -13,4 +13,11 @@
  Log the 5 items to the console
  */
 
-fetch("")
+ const URL = "https://apis.scrimba.com/jsonplaceholder/posts"
+
+fetch(URL)
+    .then(response => response.json())
+    .then(data => {
+        const posts = data.slice(0, 5);
+        console.log(posts);
+    })
