@@ -10,15 +10,22 @@ function handleClick() {
 }
 
 document.getElementById("new-deck").addEventListener("click", handleClick)
+
+document.getElementById("draw-cards").addEventListener("click", () => {
+    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.cards)
+            document.getElementById("cards").innerHTML = `
+                <img src=${data.cards[0].image} />
+                <img src=${data.cards[1].image} />
+            `
+        })
+})
 /**
- * Challenge
+ * Challenge:
  * 
- * Background:
- * The Deck of Cards API expects us to provide the deck id 
- * of the deck we're playing with so it can remember which
- * cards we've already drawn, how many are remaining in the
- * deck, etc.
- * 
- * Task: save the deck_id from the returned data to a local
- * variable so we can use it later
+ * Display the images of the 2 cards you drew in the browser.
+ * Probably best to use `innerHTML` to insert a couple <img> elements
+ * on the page.
  */
