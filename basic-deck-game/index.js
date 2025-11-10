@@ -9,20 +9,23 @@ function handleClick() {
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
+            remainingText.textContent = `Remaining cards: ${data.remaining}`
             deckId = data.deck_id
             console.log(deckId)
         })
-} 
+}
 
 newDeckBtn.addEventListener("click", handleClick)
 
 /**
  * Challenge:
  * 
- * Display the number of cards remaining in the deck on the page
- * Hint: Check the data that comes back when we draw 2 new cards
- * to see if there's anything helpful there for this task (😉)
+ * Disable the Draw button when we have no more cards to draw from
+ * in the deck.
+ * 
+ * Disable both the functionality of the button (i.e. change
+ * `disabled` to true on the button) AND the styling (i.e. add
+ * a `disabled` CSS class to make it look unclickable)
  */
 
 drawCardBtn.addEventListener("click", () => {
@@ -38,6 +41,10 @@ drawCardBtn.addEventListener("click", () => {
             `
             const winnerText = determineCardWinner(data.cards[0], data.cards[1])
             header.textContent = winnerText
+            
+            if (data.remaining === 0) {
+                drawCardBtn.disabled = true
+            }
         })
 })
 
