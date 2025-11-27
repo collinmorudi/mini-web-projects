@@ -31,9 +31,41 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     })
     .catch(err => console.error(err))
 
-function getCurrentTime() {
-    const date = new Date()
-    document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
-} 
+// function getCurrentTime() {
+//     const date = new Date()
+//     document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
+// }
 
-setInterval(getCurrentTime, 1000)
+// setInterval(getCurrentTime, 1000)
+
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            // console.log(data)
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            document.getElementById("weather").innerHTML = `
+                <img src=${iconUrl} />
+            `
+        })
+        .catch(err => console.error(err))
+});
+
+/**
+ * Challenge: Display the weather icon as an <img />
+ * inside the <div id="weather">
+ * 
+ * This site shows an example URL for the icon:
+ * https://openweathermap.org/weather-conditions
+ * 
+ * Note: the weather icon is found instead data.weather, which is
+ * an array of weather for that area. You can just access the first
+ * item in that array to get the icon ID.
+ */
+
+// http://openweathermap.org/img/wn/01d@2x.png
